@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Pujitha 💖</title>
+
+<style>
+body {
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:rgb(6, 6, 6);
+    overflow:hidden;
+}
+
+/* PAGE STYLE */
+.page {
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    backdrop-filter: blur(12px);
+    transition: all 0.8s ease;
+    transform: scale(0.9);
+    opacity:0;
+    padding:20px;
+    text-align:center;
+}
+
+.active {
+    opacity:1;
+    transform: scale(1);
+    z-index:1;
+}
+
+/* BUTTON */
+button {
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:white;
+    color:#ff4b7d;
+    cursor:pointer;
+    margin-top:20px;
+    transition:0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow:0 0 15px rgba(255,255,255,0.6);
+}
+
+/* INPUT */
+input {
+    padding:10px;
+    border-radius:10px;
+    border:none;
+}
+
+/* TYPING EFFECT */
+.typing {
+    overflow:hidden;
+    white-space:nowrap;
+    border-right:2px solid white;
+    animation: typing 3s steps(30,end), blink .7s infinite;
+}
+
+@keyframes typing { from{width:0} to{width:100%} }
+@keyframes blink { 50%{border-color:transparent} }
+
+/* HEARTS */
+.heart {
+    position:absolute;
+    animation: float 6s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes float {
+    from { transform:translateY(100vh);}
+    to { transform:translateY(-10vh);}
+}
+
+/* FADE */
+.fade { animation: fadeIn 1.5s ease; }
+
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(30px);}
+    to {opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="C:\Users\ADMIN\frontend\music(1).mp4" type="audio/mpeg">
+</audio>
+
+<script>
+/* HEARTS */
+setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(15+Math.random()*25)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},400);
+</script>
+
+<!-- PASSWORD -->
+<div id="p1" class="page active">
+    <h2>Enter the date 💌</h2>
+    <input type="password" id="pass" placeholder="DDMMYYYY">
+    <button onclick="check()">Unlock</button>
+</div>
+
+<!-- COUNTDOWN -->
+<div id="p2" class="page">
+    <h2>Waiting for your day ⏳</h2>
+    <h1 id="count"></h1>
+    <button onclick="next()">Continue</button>
+</div>
+
+<!-- INTRO -->
+<div id="p3" class="page">
+    <h1 class="typing">Hey Pujitha 😊</h1>
+    <button onclick="startMusic();next()">Continue</button>
+</div>
+
+<!-- MESSAGES -->
+<div id="p4" class="page fade">
+    <h2>
+        I don’t say this often…<br><br>
+        but you’re a really good person 🌸
+    </h2>
+    <button onclick="next()">Next</button>
+</div>
+
+<div id="p5" class="page fade">
+    <h2>
+        You have a way of being yourself<br>
+        that’s genuinely nice to see ✨
+    </h2>
+    <button onclick="next()">Next</button>
+</div>
+
+<div id="p6" class="page fade">
+    <h2>
+        I may just be a well-wisher…<br><br>
+        but I truly wish you happiness and success 😊
+    </h2>
+    <button onclick="next()">Next</button>
+</div>
+
+<!-- SURPRISE -->
+<div id="p7" class="page">
+    <h2>One small surprise 🎁</h2>
+    <button onclick="surprise()">Open</button>
+    <button onclick="next()">Next</button>
+</div>
+
+<!-- FINAL -->
+<div id="p8" class="page fade">
+    <h1>🎂 Happy Birthday Pujitha 🎂</h1>
+    <p>
+        Wishing you a day full of happiness<br>
+        and a year full of success 💫<br><br>
+
+        Stay the same kind and positive person 😊<br><br>
+
+        
+    </p>
+</div>
+
+<script>
+let i=1;
+
+function next(){
+    document.getElementById("p"+i).classList.remove("active");
+    i++;
+    document.getElementById("p"+i).classList.add("active");
+}
+
+function check(){
+    let p=document.getElementById("pass").value;
+    if(p==="13072005"){
+        next();
+    } else {
+        alert("Try again 🙂");
+    }
+}
+
+/* COUNTDOWN */
+let target=new Date("July 13, 2026 00:00:00").getTime();
+setInterval(()=>{
+    let now=new Date().getTime();
+    let diff=target-now;
+    let d=Math.floor(diff/(1000*60*60*24));
+    let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    let m=Math.floor((diff%(1000*60*60))/(1000*60));
+    document.getElementById("count").innerHTML=d+"d "+h+"h "+m+"m";
+},1000);
+
+/* MUSIC */
+function startMusic(){
+    document.getElementById("music").play();
+}
+
+/* SURPRISE */
+function surprise(){
+    alert("Keep smiling… it suits you 😊");
+}
+</script>
+
+</body>
+</html>
